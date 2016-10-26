@@ -23,3 +23,32 @@
     </div>
   </div>
 </div>
+
+<!-- A User has many statuses -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Statuses
+      </li>
+
+      <% @user.statuses.each do |status| %>
+        <li class="list-group-item">
+          <a href="/statuses/<%= status.id %>">
+            <%= status.body %>
+          </a>
+          <a href="/statuses/<%= status.id %>" class="btn btn-primary">
+            Show
+          </a>
+          <a href="/statuses/<%= status.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_status/<%= status.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
