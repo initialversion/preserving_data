@@ -1,4 +1,14 @@
 class StatusesController < ApplicationController
+  before_action :current_user_must_be_status_user, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_status_user
+    status = Status.find(params[:id])
+
+    unless current_user == status.user
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @statuses = Status.all
   end
