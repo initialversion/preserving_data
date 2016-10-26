@@ -17,7 +17,7 @@
       <% @statuses.each do |status| %>
       <tr>
         <td><%= status.body %></td>
-        <td><%= status.user_id %></td>
+        <td><%= status.user.email %></td>
         <td>
           <a href="/statuses/<%= status.id %>" class="btn btn-primary">Show</a>
           <a href="/statuses/<%= status.id %>/edit" class="btn btn-warning">Edit</a>
