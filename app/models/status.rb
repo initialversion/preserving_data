@@ -5,4 +5,6 @@ class Status < ApplicationRecord
 
   # Validations
 
+  validates :body, :length => { :maximum => 140 }
+
 end
