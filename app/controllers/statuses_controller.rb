@@ -11,6 +11,11 @@ class StatusesController < ApplicationController
 
   def index
     @statuses = Status.all
+    @location_hash = Gmaps4rails.build_markers(@statuses.where.not(:location_latitude => nil)) do |status, marker|
+      marker.lat status.location_latitude
+      marker.lng status.location_longitude
+      marker.infowindow "<h5><a href='/statuses/#{status.id}'>#{status.created_at}</a></h5><small>#{status.location_formatted_address}</small>"
+    end
   end
 
   def show
@@ -25,6 +30,7 @@ class StatusesController < ApplicationController
     @status = Status.new
     @status.body = params[:body]
     @status.user_id = params[:user_id]
+    @status.location = params[:location]
 
     if @status.save
       redirect_to "/statuses", :notice => "Status created successfully."
@@ -42,6 +48,7 @@ class StatusesController < ApplicationController
 
     @status.body = params[:body]
     @status.user_id = params[:user_id]
+    @status.location = params[:location]
 
     if @status.save
       redirect_to "/statuses", :notice => "Status updated successfully."
