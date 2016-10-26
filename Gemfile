@@ -60,3 +60,5 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem "rollbar"
+gem 'seed_dump', :git => 'https://github.com/murugan-r/seed_dump.git'
+gem 'activerecord-import'
